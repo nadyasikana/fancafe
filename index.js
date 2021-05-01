@@ -27,6 +27,14 @@ app.post("/api/datamember", data, function (req, res) {
   res.send(req.body);
 });
 
+app.get("/api/cari", function (req, res, next) {
+    var nama = req.query.nama;
+    console.log(`nama : ${nama}`);
+    var hp = req.query.hp;
+    console.log(`umur : ${hp}`);
+    res.send(hp);
+  });
+
 app.listen(4000, function () {
   console.log("Server run");
 });
