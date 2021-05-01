@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=New+Tegomin">
+          <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Dancing+Script">
+    <style>
+        
+        body{
+            background-color: #C0F5F5;
+            text-align: center;
+        }
+        #fc{
+            font-family: 'New Tegomin';
+            font-size: 40pt;
+            margin: 0;
+        }
+        #desc{
+            font-family: 'Dancing Script';
+            margin: 0;
+        }
+        #nama{
+            margin-right: 5px;
+        }
+        #myBtn{
+            background: aquamarine;
+        }
+    </style>
+    <title>FanCafe</title>
+</head>
+<body>
+    <h1 class="title" id="fc">FanCafe</h1>
+    <p class="title" id="desc">Where the Fans Meet</p>
+    <br>
+    <input type="text" id="nama">
+    <button id="myBtn">Join</button>
+    <div id="myDiv"></div>
+    <div style="text-align: left; margin: 30px; background-color: azure;" id="myDivTwo">
+        <ul id="myUl">List of Cafe Members</ul>
+    </div>
+    
+    <script>
+        var nama = document.getElementById('nama')
+        var myBtn = document.getElementById('myBtn')
+        var myDiv = document.getElementById('myDiv')
+        var myDivTwo = document.getElementById('myDivTwo')
+        var myUl = document.getElementById('myUl')
+
+        myBtn.addEventListener('click',function(){
+            var newP = document.createElement('p')
+            var newLi = document.createElement('li')
+            newP.innerHTML = nama.value + ' has joined the cafe!'
+            newLi.innerHTML = nama.value
+            myDiv.append(newP)
+            myUl.append(newLi)
+            nama.value=''
+            nama.focus()
+            
+        })
+    </script>
+</body>
+</html>
