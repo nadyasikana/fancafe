@@ -29,6 +29,9 @@
         #myBtn{
             background: aquamarine;
         }
+        #noBtn {
+            background: white;
+        }
     </style>
     <title>FanCafe</title>
 </head>
@@ -36,30 +39,41 @@
     <h1 class="title" id="fc">FanCafe</h1>
     <p class="title" id="desc">Where the Fans Meet</p>
     <br>
-    <input type="text" id="nama">
+    <p>Do you want to join our Cafe?</p>
     <button id="myBtn">Join</button>
+    <button id="noBtn">No</button>
     <div id="myDiv"></div>
-    <div style="text-align: left; margin: 30px; background-color: azure;" id="myDivTwo">
-        <ul id="myUl">List of Cafe Members</ul>
-    </div>
+    <form id="myForm" action="http://127.0.0.1:4000/api/datamember" method="POST"></form>
     
     <script>
-        var nama = document.getElementById('nama')
         var myBtn = document.getElementById('myBtn')
         var myDiv = document.getElementById('myDiv')
-        var myDivTwo = document.getElementById('myDivTwo')
-        var myUl = document.getElementById('myUl')
 
         myBtn.addEventListener('click',function(){
             var newP = document.createElement('p')
-            var newLi = document.createElement('li')
-            newP.innerHTML = nama.value + ' has joined the cafe!'
-            newLi.innerHTML = nama.value
-            myDiv.append(newP)
-            myUl.append(newLi)
-            nama.value=''
-            nama.focus()
+            var labelNama = document.createElement('label')
+            var labelHP = document.createElement('label')
+            var inputNama = document.createElement('input')
+            inputNama.setAttribute("name","nama")
+            var inputHP = document.createElement('input')
+            inputHP.setAttribute("name","hp")
+            var submitBtn = document.createElement('input')
+            submitBtn.setAttribute("type","submit")
+            submitBtn.setAttribute("style","background:aquamarine;")
+            submitBtn.setAttribute("value","Submit")
+
+            newP.innerHTML =  'Welcome! We need your data, would you mind to fill this form?'
+            labelNama.innerHTML = 'Nama : '
+            labelHP.innerHTML = 'No HP : '
             
+            myDiv.append(newP)
+            myForm.append(labelNama)
+            myForm.append(inputNama)
+            myForm.append(document.createElement('br'))
+            myForm.append(document.createElement('br'))
+            myForm.append(labelHP)
+            myForm.append(inputHP)
+            myForm.append(submitBtn)
         })
     </script>
 </body>
