@@ -51,8 +51,11 @@
 
         myBtn.addEventListener('click',function(){
             var newP = document.createElement('p')
+            var labelNomor = document.createElement('label')
             var labelNama = document.createElement('label')
             var labelHP = document.createElement('label')
+            var inputNomor = document.createElement('input')
+            inputNama.setAttribute("name","nomor")
             var inputNama = document.createElement('input')
             inputNama.setAttribute("name","nama")
             var inputHP = document.createElement('input')
@@ -63,10 +66,15 @@
             submitBtn.setAttribute("value","Submit")
 
             newP.innerHTML =  'Welcome! We need your data, would you mind to fill this form?'
+            labelNomor.innerHTML = 'Nomor : '
             labelNama.innerHTML = 'Nama : '
             labelHP.innerHTML = 'No HP : '
             
             myDiv.append(newP)
+            myForm.append(labelNomor)
+            myForm.append(inputNomor)
+            myForm.append(document.createElement('br'))
+            myForm.append(document.createElement('br'))
             myForm.append(labelNama)
             myForm.append(inputNama)
             myForm.append(document.createElement('br'))

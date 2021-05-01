@@ -11,15 +11,41 @@ var logger = require("morgan");
 //Module morgan merupakan modul untuk logger yang berfungsi untuk pencatatan tiap request ke server. Pencatatan ini atau istilahnya logging akan ditunjukkan di console terminal.
 app.use(logger("dev"));
 
+
 app.use(express.static(__dirname + "/publik"));
 
 //route dengan method get
-app.get("/api/:nama/:hp", function (req, res) {
+/*app.get("/api/:nama/:hp", function (req, res) {
   res.statusCode = 200;
   //content-type pada expressjs
   res.setHeader("Content-Type", "text/plain");
   res.send(req.params);
-});
+});*/
+
+const myMiddleware = (req,res,next)=>{
+    if (req.params.nomor === "17"){
+        console.log("Nomor terverifikasi")
+        next()
+    }else{
+        const err = {
+            status: "error",
+            data : {
+                nama: req.params.nama,
+            },
+        };
+        next(err)
+    }
+}
+
+app.get("/api/:nomor/:nama",myMiddleware,function(req,res){
+    res.statusCode=200
+    res.setHeader("Content-Type","text/plain")
+    res.send(req.params)
+})
+
+app.use((error,req,res,next)=>{
+    res.send(error)
+})
 
 //route dengan method post
 var data = bodyParser.urlencoded({ extended: false });
@@ -27,19 +53,17 @@ app.post("/api/datamember", data, function (req, res) {
   res.send(req.body);
 });
 
-app.get("/api/cari", function (req, res, next) {
+/*app.get("/api/cari", function (req, res, next) {
     var nama = req.query.nama;
     console.log(`nama : ${nama}`);
     var hp = req.query.hp;
-    console.log(`umur : ${hp}`);
+    console.log(`No HP : ${hp}`);
     res.send(hp);
-  });
+  });*/
 
 app.listen(4000, function () {
   console.log("Server run");
 });
-
-
 
 http
     .createServer(function(req,res){
