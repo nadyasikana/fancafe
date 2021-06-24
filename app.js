@@ -10,3 +10,4 @@ server.use(express.static(__dirname + "/publik"))
 server.listen(4000,function(){
     console.log("Server Run")
 })
+
